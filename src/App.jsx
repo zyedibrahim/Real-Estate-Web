@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import "./App.css";
-import icon from "./logoImg/icon.png";
 import { Drawer, useMediaQuery } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
@@ -17,8 +16,8 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import icon from "./logoImg/icon.png";
 import { API } from "./API";
-
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { HomePage } from "./HomePage";
