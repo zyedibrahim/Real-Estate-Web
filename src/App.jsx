@@ -25,7 +25,7 @@ import { MenuOpen } from "@mui/icons-material";
 import { BuildingPage } from "./BuildingPage";
 import { RentPage } from "./RentPage";
 import { LandPage } from "./LandPage";
-import { AllProperties } from "./ALLPROPERTIES.JSX";
+import { AllProperties } from "./AllProperties";
 import ContactPage from "./ContactPage";
 import NotFoundPage from "./NotFound";
 function App() {
