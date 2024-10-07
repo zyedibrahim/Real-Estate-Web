@@ -16,7 +16,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import icon from "./logoImg/icon.png";
+import icon from "./logoimg/icon.png";
 import { API } from "./API";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
