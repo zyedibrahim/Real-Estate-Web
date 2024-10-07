@@ -107,7 +107,7 @@ function App() {
             <Box>
               <Box onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
                 <img
-                  src={icon}
+                  src="https://raw.githubusercontent.com/zyedibrahim/Real-Estate-Web/refs/heads/main/src/logoimg/icon.png"
                   alt="Logo"
                   style={{
                     width: "min-content",
@@ -213,7 +213,7 @@ function App() {
               <Box
                 sx={{ width: "240px", height: "50px", objectFit: "contain" }}
                 component="img"
-                src={icon}
+                src="https://raw.githubusercontent.com/zyedibrahim/Real-Estate-Web/refs/heads/main/src/logoimg/icon.png"
                 alt="logo"
               />
             </Box>
