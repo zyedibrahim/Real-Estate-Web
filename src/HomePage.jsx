@@ -147,6 +147,7 @@ export function HomePage() {
             letterSpacing: "5px",
             fontSize: "20px",
             fontWeight: "400",
+            textAlign: "center",
           }}
         >
           WHAT ARE YOU LOOKING FOR?
