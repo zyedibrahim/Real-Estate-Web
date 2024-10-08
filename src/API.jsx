@@ -1,5 +1,6 @@
 export const API = [
   {
+    _id: "5599",
     name: "Sunny Villa",
     location: "Miami, FL",
     image:
@@ -10,8 +11,11 @@ export const API = [
     baths: 3,
     level: "2",
     sqfts: 2500,
+    builtYear: 2015,
+    mainloaction: "santa moica",
   },
   {
+    _id: "5559",
     name: "Urban Loft",
     location: "New York, NY",
     image:
@@ -22,8 +26,11 @@ export const API = [
     baths: 2,
     level: "1",
     sqfts: 1500,
+    builtYear: 2015,
+    mainloaction: "santa moica",
   },
   {
+    _id: "5589",
     name: "Mountain Retreat",
     location: "Aspen, CO",
     image:
@@ -34,8 +41,11 @@ export const API = [
     baths: 2,
     level: "1",
     sqfts: 2000,
+    builtYear: 2015,
+    mainloaction: "santa moica",
   },
   {
+    _id: "5522",
     name: "Lakeview Cottage",
     location: "Lake Tahoe, CA",
     image:
@@ -46,8 +56,11 @@ export const API = [
     baths: 2,
     level: "1",
     sqfts: 1800,
+    builtYear: 2015,
+    mainloaction: "santa moica",
   },
   {
+    _id: "55059",
     name: "City Apartment",
     location: "San Francisco, CA",
     image:
@@ -58,5 +71,7 @@ export const API = [
     baths: 1,
     level: "1",
     sqfts: 900,
+    builtYear: 2015,
+    mainloaction: "santa moica",
   },
 ];
