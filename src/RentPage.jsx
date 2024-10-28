@@ -11,7 +11,32 @@ import BedIcon from "@mui/icons-material/Bed";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import DomainAddIcon from "@mui/icons-material/DomainAdd";
 import PhotoSizeSelectSmallIcon from "@mui/icons-material/PhotoSizeSelectSmall";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 export function RentPage() {
+  const navigate = useNavigate();
+  const [BuildingPage, SetBuildingPage] = useState();
+
+  const fetchData = async () => {
+    try {
+      const url = API; // Ensure 'API' is defined
+      const response = await fetch(`${url}/properties/buildings`);
+      if (response.status !== 200) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      SetBuildingPage(data.Response); // Set the fetched data to state
+      console.log(data, "from building");
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
+
+  // Using useEffect to call fetchData when the component mounts
+  useEffect(() => {
+    fetchData();
+  }, []); // Empty array ensures it runs only once, like componentDidMount
+
   return (
     <Box>
       <Box
@@ -96,7 +121,7 @@ export function RentPage() {
             gap: "2px",
           }}
         >
-          {API.slice(0, 4).map((ele, index) => (
+          {BuildingPage?.map((ele, index) => (
             <Grid
               sx={{
                 marginBottom: "20px",
@@ -109,7 +134,10 @@ export function RentPage() {
               key={index}
               item
             >
-              <Card sx={{ maxWidth: "370px" }}>
+              <Card
+                onClick={() => navigate(`/dwell/properties/${ele._id}`)}
+                sx={{ maxWidth: "370px" }}
+              >
                 <CardActionArea>
                   <CardMedia
                     component="img"

@@ -6,13 +6,32 @@ import PhotoSizeSelectSmallIcon from "@mui/icons-material/PhotoSizeSelectSmall";
 import Grid from "@mui/material/Grid";
 import { API } from "./API";
 import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export function EachProperties() {
   const { id } = useParams();
 
-  const eachdata = API.find((ele) => ele._id === id);
+  const [eachdata, Seteachdata] = useState();
 
-  console.log();
+  const fetchData = async () => {
+    try {
+      const url = API; // Ensure 'API' is defined
+      const response = await fetch(`${url}/properties/buildings/${id}`);
+      if (response.status !== 200) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      Seteachdata(data.Response); // Set the fetched data to state
+      console.log(data, "from each data");
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
+
+  // Using useEffect to call fetchData when the component mounts
+  useEffect(() => {
+    fetchData();
+  }, []); // Empty array ensures it runs only once, like componentDidMount
 
   return (
     <Box
@@ -67,7 +86,7 @@ export function EachProperties() {
             }}
             item
           >
-            $15000
+            $ {eachdata?.price}
           </Box>
           <Box
             src={eachdata?.image}
@@ -115,14 +134,7 @@ export function EachProperties() {
                 fontWeight: 300,
               }}
             >
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde
-              odio porro rerum blanditiis, ut facilis laborum exercitationem
-              iure aperiam quo sint laudantium, voluptates sed ipsa doloremque
-              iusto perferendis debitis dolorum? Lorem ipsum dolor sit amet,
-              consectetur adipisicing elit. Vitae impedit quasi adipisci odio?
-              Rerum incidunt explicabo culpa similique impedit obcaecati veniam
-              voluptate excepturi quod, repellendus laudantium ratione in
-              inventore tenetur!
+              {eachdata?.description}
             </Typography>
           </Box>
 

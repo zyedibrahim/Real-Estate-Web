@@ -11,7 +11,32 @@ import BedIcon from "@mui/icons-material/Bed";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import DomainAddIcon from "@mui/icons-material/DomainAdd";
 import PhotoSizeSelectSmallIcon from "@mui/icons-material/PhotoSizeSelectSmall";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 export function BuildingPage() {
+  const navigate = useNavigate();
+  const [BuildingPage, SetBuildingPage] = useState();
+
+  const fetchData = async () => {
+    try {
+      const url = API; // Ensure 'API' is defined
+      const response = await fetch(`${url}/properties/buildings`);
+      if (response.status !== 200) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      SetBuildingPage(data.Response); // Set the fetched data to state
+      console.log(data, "from building");
+    } catch (error) {
+      console.error("Failed to fetch data:", error);
+    }
+  };
+
+  // Using useEffect to call fetchData when the component mounts
+  useEffect(() => {
+    fetchData();
+  }, []); // Empty array ensures it runs only once, like componentDidMount
+
   return (
     <Box>
       <Box
@@ -96,142 +121,146 @@ export function BuildingPage() {
             gap: "2px",
           }}
         >
-          {API.slice(0, 4).map((ele, index) => (
-            <Grid
-              sx={{
-                marginBottom: "20px",
-
-                display: "flex",
-                justifyContent: "center",
-                // Set the Grid item width equal to the card width
-                width: "370px",
-              }}
-              key={index}
-              item
-            >
-              <Card sx={{ maxWidth: "370px" }}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    height="200"
-                    image={ele.image}
-                    alt={ele.name}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {ele.name}
-                    </Typography>
-                    <Typography gutterBottom variant="h6" component="div">
-                      $ {ele.price}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{ color: "text.secondary" }}
-                    >
-                      Lizards are a widespread group of squamate reptiles, with
-                      over 6,000 species, ranging across all continents except
-                      Antarctica.
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-around",
-                    paddingY: "30px",
-                  }}
+          {BuildingPage?.length > 0 ? (
+            BuildingPage?.map((ele, index) => (
+              <Grid
+                sx={{
+                  marginBottom: "20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  width: "370px",
+                }}
+                key={index}
+                item
+              >
+                <Card
+                  onClick={() => navigate(`/dwell/properties/${ele._id}`)}
+                  sx={{ maxWidth: "370px" }}
                 >
-                  <Box
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image={ele.image}
+                      alt={ele.name}
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="div">
+                        {ele.name}
+                      </Typography>
+                      <Typography gutterBottom variant="h6" component="div">
+                        $ {ele.price}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "text.secondary" }}
+                      >
+                        Lizards are a widespread group of squamate reptiles,
+                        with over 6,000 species, ranging across all continents
+                        except Antarctica.
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions
                     sx={{
                       display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      gap: "2px",
-
-                      padding: "2px",
+                      justifyContent: "space-around",
+                      paddingY: "30px",
                     }}
                   >
-                    <BedIcon />
-                    <Typography
+                    <Box
                       sx={{
-                        color: "#698CD0",
-                        fontWeight: "300",
-                        fontFamily: '"Roboto Condensed", sans-serif',
-                        fontSize: "18px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "2px",
+                        padding: "2px",
                       }}
                     >
-                      Beds
-                    </Typography>
-                    <Box sx={{ textAlign: "center" }}>{ele.beds}</Box>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <BathtubIcon />
-                    <Typography
+                      <BedIcon />
+                      <Typography
+                        sx={{
+                          color: "#698CD0",
+                          fontWeight: "300",
+                          fontFamily: '"Roboto Condensed", sans-serif',
+                          fontSize: "18px",
+                        }}
+                      >
+                        Beds
+                      </Typography>
+                      <Box sx={{ textAlign: "center" }}>{ele.beds}</Box>
+                    </Box>
+                    <Box
                       sx={{
-                        color: "#698CD0",
-                        fontWeight: "300",
-                        fontFamily: '"Roboto Condensed", sans-serif',
-                        fontSize: "18px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
                       }}
                     >
-                      Baths
-                    </Typography>
-                    <Box sx={{ textAlign: "center" }}>{ele.baths}</Box>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <DomainAddIcon />
-                    <Typography
+                      <BathtubIcon />
+                      <Typography
+                        sx={{
+                          color: "#698CD0",
+                          fontWeight: "300",
+                          fontFamily: '"Roboto Condensed", sans-serif',
+                          fontSize: "18px",
+                        }}
+                      >
+                        Baths
+                      </Typography>
+                      <Box sx={{ textAlign: "center" }}>{ele.baths}</Box>
+                    </Box>
+                    <Box
                       sx={{
-                        color: "#698CD0",
-                        fontWeight: "300",
-                        fontFamily: '"Roboto Condensed", sans-serif',
-                        fontSize: "18px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
                       }}
                     >
-                      Level
-                    </Typography>
-                    <Box sx={{ textAlign: "center" }}>{ele.level}</Box>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <PhotoSizeSelectSmallIcon />
-                    <Typography
+                      <DomainAddIcon />
+                      <Typography
+                        sx={{
+                          color: "#698CD0",
+                          fontWeight: "300",
+                          fontFamily: '"Roboto Condensed", sans-serif',
+                          fontSize: "18px",
+                        }}
+                      >
+                        Level
+                      </Typography>
+                      <Box sx={{ textAlign: "center" }}>{ele.level}</Box>
+                    </Box>
+                    <Box
                       sx={{
-                        color: "#698CD0",
-                        fontWeight: "300",
-                        fontFamily: '"Roboto Condensed", sans-serif',
-                        fontSize: "18px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
                       }}
                     >
-                      sqfts
-                    </Typography>
-                    <Box sx={{ textAlign: "center" }}>{ele.sqfts}</Box>
-                  </Box>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
+                      <PhotoSizeSelectSmallIcon />
+                      <Typography
+                        sx={{
+                          color: "#698CD0",
+                          fontWeight: "300",
+                          fontFamily: '"Roboto Condensed", sans-serif',
+                          fontSize: "18px",
+                        }}
+                      >
+                        sqfts
+                      </Typography>
+                      <Box sx={{ textAlign: "center" }}>{ele.sqfts}</Box>
+                    </Box>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))
+          ) : (
+            <Typography variant="h6">NO Data</Typography>
+          )}
         </Grid>
       </Box>
     </Box>
