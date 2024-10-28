@@ -15,7 +15,7 @@ export const API = [
     mainloaction: "santa moica",
   },
   {
-    _id: "5559",
+    _id: "5859",
     name: "Urban Loft",
     location: "New York, NY",
     image:
@@ -30,7 +30,7 @@ export const API = [
     mainloaction: "santa moica",
   },
   {
-    _id: "5589",
+    _id: "5989",
     name: "Mountain Retreat",
     location: "Aspen, CO",
     image:
@@ -60,7 +60,7 @@ export const API = [
     mainloaction: "santa moica",
   },
   {
-    _id: "55059",
+    _id: "52059",
     name: "City Apartment",
     location: "San Francisco, CA",
     image:

@@ -315,7 +315,10 @@ export function HomePage() {
               item
             >
               <Card sx={{ maxWidth: "370px" }}>
-                <CardActionArea>
+                <CardActionArea
+                  // onClick={() => navigate(`/dwell/properties/${ele._id}`)}
+                  onClick={() => navigate(`/dwell/properties/${ele._id}`)}
+                >
                   <CardMedia
                     component="img"
                     height="200"
